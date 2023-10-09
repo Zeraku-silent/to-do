@@ -15,7 +15,7 @@ export const List = () => {
 
   return (
     <div>
-      <Input />
+      <Input addTodo={addTodo} />
       <TasksList>
         {tasks.map((item) => (
           <Task task={item} key={item.id} />
