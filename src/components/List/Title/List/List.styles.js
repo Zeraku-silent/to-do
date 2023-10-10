@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
 export const TasksList = styled.div`
-  background-color: lightblue;
+  width: 400px;
+  padding: 50px;
 `;

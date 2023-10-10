@@ -7,13 +7,13 @@ export const StyledInput = styled.input`
   height: calc(2.25rem + 2px);
   padding: 0.375rem 0.75rem;
   font-family: inherit;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 700;
   line-height: 1.5;
   color: #212529;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #bdbdbd;
+  border: 5px solid green;
   border-radius: 100px;
   position: relative;
   left: 42%;
