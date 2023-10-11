@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  ${
-    "" /* display: block;
-  width: 7%;
   text-align: center;
   height: 60px;
   font-family: inherit;
@@ -13,10 +10,9 @@ export const StyledButton = styled.button`
   color: red;
   background-color: green;
   background-clip: padding-box;
-  border: 5px solid green;
+  border: 2px solid white;
   border-radius: 100px;
   position: relative;
   left: 42%;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
-  }
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;

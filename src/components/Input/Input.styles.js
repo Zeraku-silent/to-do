@@ -11,7 +11,7 @@ export const StyledInput = styled.input`
   font-weight: 700;
   line-height: 1.5;
   color: #212529;
-  background-color: #fff;
+  background-color: Gainsboro;
   background-clip: padding-box;
   border: 5px solid green;
   border-radius: 100px;
