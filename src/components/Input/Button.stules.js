@@ -7,7 +7,7 @@ export const StyledButton = styled.button`
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.5;
-  color: red;
+  color: black;
   background-color: green;
   background-clip: padding-box;
   border: 2px solid white;
