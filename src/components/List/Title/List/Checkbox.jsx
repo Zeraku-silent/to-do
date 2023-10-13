@@ -1,5 +1,5 @@
 import { StyledCheckbox } from "./Checkbox.styles";
 
 export const Checkbox = () => {
-  return <StyledCheckbox></StyledCheckbox>;
+  return <StyledCheckbox type="checkbox"></StyledCheckbox>;
 };

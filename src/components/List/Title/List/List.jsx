@@ -2,19 +2,25 @@ import { useState } from "react";
 import { Input } from "../../../Input/Input";
 import { TasksList } from "./List.styles";
 import { Task } from "./Task";
-import { nanoid, random } from "nanoid";
+import { nanoid } from "nanoid";
 import { StyledCheckbox } from "./Checkbox.styles";
 import { TaskWrapper } from "./TaskWrapper.styles";
 
 export const List = () => {
   const [tasks, setTasks] = useState([]);
-  const [status, setStatus] = useState("unchecked");
   const addTodo = (text) => {
     const id = nanoid();
-    const chbid = nanoid();
-    const newTask = { id, text, chbid };
+    const newTask = { id, text };
     setTasks((prev) => [...prev, newTask]);
   };
+
+  // function handleClick(e) {
+  //   if (e.target.checked) {
+  //     console.log("asd");
+  //   }
+  // }
+
+  // На текущий момент идея передать пропсами данные о таске в чекбокс и в чекбоксе сделать функцию по удалению
 
   return (
     <div>
@@ -23,7 +29,11 @@ export const List = () => {
         {tasks.map((item) => (
           <TaskWrapper>
             <Task task={item} key={item.id}></Task>
-            <StyledCheckbox key={item.chbid} type="checkbox"></StyledCheckbox>
+            {/* <StyledCheckbox
+              type="checkbox"
+              onClick={handleClick}
+              key={item.chbid}
+            ></StyledCheckbox> */}
           </TaskWrapper>
         ))}
       </TasksList>
