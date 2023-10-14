@@ -1,5 +1,11 @@
-import { Title } from "./components/List/Title/Title";
-import { List } from "./components/List/Title/List/List";
+import {
+  Title,
+  Task,
+  Input,
+  Button,
+  Checkbox,
+  List,
+} from "./components/TaskComponents";
 
 function App() {
   return (
