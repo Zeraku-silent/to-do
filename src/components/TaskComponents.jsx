@@ -1,7 +1,6 @@
 import {
   StyledTitle,
   TasksList,
-  TaskWrapper,
   StyledCheckbox,
   StyledButton,
   InputWrapper,
@@ -19,11 +18,16 @@ const Title = () => {
 
 //Таска
 
-const Task = ({ task, handleToggle }) => {
+const Task = ({ task, handleToggle, handleRemove }) => {
+  const deliteTask = () => {
+    handleRemove(task.id);
+  };
   return (
-    <TaskText>
+    <TaskText checked={task.checked}>
       {task.text}
       <Checkbox task={task} handleToggle={handleToggle}></Checkbox>
+      <span>{task.date}</span> <br></br>
+      <button onClick={deliteTask}>Удалить в пизду</button>
     </TaskText>
   );
 };
@@ -68,16 +72,16 @@ const Button = () => {
 
 //Чексбокс
 
-const Checkbox = ({ handleToggle }) => {
-  // const [value, setValue] = useState(task.text);
-
-  // function handleClick(e) {
-  //   if (e.target.checked) {
-  //     console.log(value);
-  //   }
-  // }
+const Checkbox = ({ task, handleToggle }) => {
+  const onClick = () => {
+    handleToggle(task.id);
+  };
   return (
-    <StyledCheckbox type="checkbox" onClick={handleToggle}></StyledCheckbox>
+    <StyledCheckbox
+      value={task.checked}
+      type="checkbox"
+      onChange={onClick}
+    ></StyledCheckbox>
   );
 };
 
@@ -86,15 +90,20 @@ const Checkbox = ({ handleToggle }) => {
 const List = () => {
   const [tasks, setTasks] = useState([]);
   const addTodo = (text) => {
+    const date = new Date().toDateString();
     const id = nanoid();
-    const newTask = { id, text };
+    const newTask = { id, text, checked: false, date };
     setTasks((prev) => [...prev, newTask]);
+  };
+
+  const handleRemove = (id) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
   };
 
   const handleChange = (id) => {
     setTasks((prev) =>
       prev.map((task) =>
-        task.id === id ? task : { ...task, checked: !task.checked }
+        task.id !== id ? task : { ...task, checked: !task.checked }
       )
     );
   };
@@ -104,9 +113,12 @@ const List = () => {
       <Input addTodo={addTodo} />
       <TasksList>
         {tasks.map((item) => (
-          <TaskWrapper>
-            <Task task={item} key={item.id} handleToggle={handleChange}></Task>
-          </TaskWrapper>
+          <Task
+            task={item}
+            key={item.id}
+            handleRemove={handleRemove}
+            handleToggle={handleChange}
+          />
         ))}
       </TasksList>
     </div>

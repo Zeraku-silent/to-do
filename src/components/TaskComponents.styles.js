@@ -20,7 +20,7 @@ const TasksList = styled.div`
 //Таска
 
 const TaskText = styled.div`
-  color: red;
+  color: ${(props) => (props.checked ? "green" : "magenta")};
   padding-left: 20px;
   border: double green 2px;
   border-width: 5px;
@@ -92,14 +92,9 @@ const StyledCheckbox = styled.input`
 
 //Таск-обертка
 
-const TaskWrapper = styled.div`
-  display: flex;
-`;
-
 export {
   StyledTitle,
   TasksList,
-  TaskWrapper,
   StyledCheckbox,
   StyledButton,
   InputWrapper,

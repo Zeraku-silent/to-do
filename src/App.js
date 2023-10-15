@@ -1,11 +1,4 @@
-import {
-  Title,
-  Task,
-  Input,
-  Button,
-  Checkbox,
-  List,
-} from "./components/TaskComponents";
+import { Title, List } from "./components/TaskComponents";
 
 function App() {
   return (
