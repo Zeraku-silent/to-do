@@ -90,7 +90,7 @@ const Checkbox = ({ task, handleToggle }) => {
 const List = () => {
   const [tasks, setTasks] = useState([]);
   const addTodo = (text) => {
-    const date = new Date().toDateString();
+    const date = new Date().toLocaleString();
     const id = nanoid();
     const newTask = { id, text, checked: false, date };
     setTasks((prev) => [...prev, newTask]);
