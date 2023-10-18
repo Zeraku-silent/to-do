@@ -89,11 +89,13 @@ const Checkbox = ({ task, handleToggle }) => {
 
 const List = () => {
   const [tasks, setTasks] = useState([]);
+
   const addTodo = (text) => {
     const date = new Date().toLocaleString();
     const id = nanoid();
     const newTask = { id, text, checked: false, date };
     setTasks((prev) => [...prev, newTask]);
+    const popa = (prev) => setTasks(...prev.reverse());
   };
 
   const handleRemove = (id) => {
@@ -107,11 +109,32 @@ const List = () => {
       )
     );
   };
+  const taskOldestSort = () => {
+    setTasks((prev) =>
+      [...prev].sort((a, b) => {
+        if (b.date > a.date) {
+          return -1;
+        }
+      })
+    );
+  };
+  const taskNewSort = () => {
+    setTasks((prev) =>
+      [...prev].sort((a, b) => {
+        if (b.date < a.date) {
+          return -1;
+        }
+      })
+    );
+  };
 
   return (
     <div>
       <Input addTodo={addTodo} />
+
       <TasksList>
+        <button onClick={taskOldestSort}>Сначала старые</button>
+        <button onClick={taskNewSort}>Сначала новые</button>
         {tasks.map((item) => (
           <Task
             task={item}
