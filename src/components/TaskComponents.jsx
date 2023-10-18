@@ -90,6 +90,7 @@ const Checkbox = ({ task, handleToggle }) => {
 const List = () => {
   const [tasks, setTasks] = useState([]);
   const [sort, setSort] = useState(true);
+  const [success, setSuccess] = useState(true);
 
   const tasksSort = () => {
     setTasks((prev) => {
@@ -107,7 +108,7 @@ const List = () => {
     const id = nanoid();
     const newTask = { id, text, checked: false, date };
     setTasks((prev) => [...prev, newTask]);
-    // tasksSort();
+    tasksSort();
   };
 
   const handleRemove = (id) => {
@@ -127,25 +128,16 @@ const List = () => {
     tasksSort();
   };
 
-  // СОРТИРОВКА ПО НОВЫМ
-
-  // СОРТИРОВКА ПО НОВЫМ
-
-  // const taskNewSort = () => {
-  //   setTasks((prev) =>
-  //     [...prev].sort((a, b) => {
-  //       if (b.date < a.date) {
-  //         return -1;
-  //       }
-  //     })
-  //   );
-  // };
-
   return (
     <div>
       <Input addTodo={addTodo} />
       <button onClick={changeSort}>sort</button>
       <TasksList>
+        <select>
+          <option value="all">Все задачи</option>
+          <option value="unsuccess">Только невыполненные</option>
+          <option value="success">Только выполненные</option>
+        </select>
         {tasks.map((item) => (
           <Task
             task={item}
