@@ -27,7 +27,7 @@ const Task = ({ task, handleToggle, handleRemove }) => {
       {task.text}
       <Checkbox task={task} handleToggle={handleToggle}></Checkbox>
       <span>{task.date}</span> <br></br>
-      <button onClick={deliteTask}>Удалить в пизду</button>
+      <button onClick={deliteTask}>Удалить</button>
     </TaskText>
   );
 };
@@ -110,7 +110,7 @@ const List = () => {
     const newTask = { id, text, checked: false, date };
     setTasks((prev) => [...prev, newTask]);
     tasksSort();
-    showFiltred();
+    // showFiltred();
   };
 
   const handleRemove = (id) => {
@@ -130,37 +130,19 @@ const List = () => {
     tasksSort();
   };
 
-  const changeFilter = (e) => {
-    setFilter(e.target.value);
-    showFiltred();
-  };
-
-  const showFiltred = (filter) => {
-    setFiltredTasks(
-      tasks.filter((task) => {
-        if (filter === "success") {
-          return task.checked;
-        }
-        if (filter === "unsuccess") {
-          return !task.checked;
-        }
-        return task;
-      })
-    );
-  };
-
   return (
     <div>
       <Input addTodo={addTodo} />
-      <button onClick={changeSort}>sort</button>
 
       <TasksList>
-        <select value={filter} onChange={changeFilter}>
+        <select value={filter}>
           <option value="all">Все задачи</option>
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
         </select>
-        {filtredTasks.map((item) => (
+        <button onClick={changeSort}>sort</button>
+
+        {tasks.map((item) => (
           <Task
             task={item}
             key={item.id}
