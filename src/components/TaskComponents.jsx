@@ -2,12 +2,10 @@ import {
   StyledTitle,
   TasksList,
   StyledCheckbox,
-  StyledButton,
-  InputWrapper,
-  StyledInput,
   TaskText,
 } from "./TaskComponents.styles";
-import { useState } from "react";
+import { Controller } from "./Controller";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 
 //Титульник
@@ -34,42 +32,6 @@ const Task = ({ task, handleToggle, handleRemove }) => {
 
 //Инпут
 
-const Input = ({ addTodo }) => {
-  const [value, setValue] = useState(" ");
-
-  const handleSubmit = (e) => {
-    if (e.code === "Enter" && value.trim()) {
-      addTodo(value.trim());
-      setValue("");
-    }
-  };
-  const buttonClick = () => {
-    if (value.trim()) {
-      addTodo(value.trim());
-      setValue("");
-    }
-  };
-  return (
-    <InputWrapper>
-      <StyledInput
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyDown={handleSubmit}
-      ></StyledInput>
-      <StyledButton type="button" onClick={buttonClick}>
-        ADD
-      </StyledButton>
-    </InputWrapper>
-  );
-};
-
-//Кнопка
-
-const Button = () => {
-  return <StyledButton></StyledButton>;
-};
-
 //Чексбокс
 
 const Checkbox = ({ task, handleToggle }) => {
@@ -79,6 +41,7 @@ const Checkbox = ({ task, handleToggle }) => {
   return (
     <StyledCheckbox
       value={task.checked}
+      checked={task.checked}
       type="checkbox"
       onChange={onClick}
     ></StyledCheckbox>
@@ -94,7 +57,7 @@ const List = () => {
   const [filtredTasks, setFiltredTasks] = useState([]);
 
   const tasksSort = () => {
-    setTasks((prev) => {
+    setFiltredTasks((prev) => {
       const sorted = [...prev].sort((a, b) => {
         if (b.date > a.date) {
           return -1;
@@ -109,8 +72,6 @@ const List = () => {
     const id = nanoid();
     const newTask = { id, text, checked: false, date };
     setTasks((prev) => [...prev, newTask]);
-    tasksSort();
-    // showFiltred();
   };
 
   const handleRemove = (id) => {
@@ -127,22 +88,46 @@ const List = () => {
 
   const changeSort = () => {
     setSort((prev) => !prev);
-    tasksSort();
   };
+  const changeFilter = (e) => {
+    setFilter(e.target.value);
+  };
+
+  const showFiltred = () => {
+    setFiltredTasks(
+      tasks.filter((task) => {
+        if (filter === "success") {
+          return task.checked;
+        }
+        if (filter === "unsuccess") {
+          return !task.checked;
+        }
+
+        return tasks;
+      })
+    );
+  };
+  useEffect(() => {
+    tasksSort();
+  }, [sort, tasks]);
+
+  useEffect(() => {
+    showFiltred();
+  }, [tasks, filter]);
 
   return (
     <div>
-      <Input addTodo={addTodo} />
+      <Controller addTodo={addTodo} />
 
       <TasksList>
-        <select value={filter}>
+        <select value={filter} onChange={changeFilter}>
           <option value="all">Все задачи</option>
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
         </select>
         <button onClick={changeSort}>sort</button>
 
-        {tasks.map((item) => (
+        {filtredTasks.map((item) => (
           <Task
             task={item}
             key={item.id}
@@ -155,4 +140,4 @@ const List = () => {
   );
 };
 
-export { Title, Task, Input, Button, Checkbox, List };
+export { Title, Task, Checkbox, List };
