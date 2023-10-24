@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import { Title, List } from "./components/TaskComponents";
+import { Title } from "./components/Title";
+import { List } from "./components/List";
 
 function App() {
   return (

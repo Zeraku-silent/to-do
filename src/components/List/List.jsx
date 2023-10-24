@@ -1,60 +1,25 @@
-import {
-  StyledTitle,
-  TasksList,
-  StyledCheckbox,
-  TaskText,
-} from "./TaskComponents.styles";
-import { Controller } from "./Controller";
-import { useEffect, useState } from "react";
+import { TasksList } from "./List.styles";
+import { Task } from "../Task";
+import { Controller } from "../Controller";
+import { useEffect, useRef, useState } from "react";
 import { nanoid } from "nanoid";
 
-//Титульник
-
-const Title = () => {
-  return <StyledTitle>Список делов</StyledTitle>;
-};
-
-//Таска
-
-const Task = ({ task, handleToggle, handleRemove }) => {
-  const deliteTask = () => {
-    handleRemove(task.id);
-  };
-  return (
-    <TaskText checked={task.checked}>
-      {task.text}
-      <Checkbox task={task} handleToggle={handleToggle}></Checkbox>
-      <span>{task.date}</span> <br></br>
-      <button onClick={deliteTask}>Удалить</button>
-    </TaskText>
-  );
-};
-
-//Инпут
-
-//Чексбокс
-
-const Checkbox = ({ task, handleToggle }) => {
-  const onClick = () => {
-    handleToggle(task.id);
-  };
-  return (
-    <StyledCheckbox
-      value={task.checked}
-      checked={task.checked}
-      type="checkbox"
-      onChange={onClick}
-    ></StyledCheckbox>
-  );
-};
-
-//Лист с тасками
-
-const List = () => {
+export const List = () => {
   const [tasks, setTasks] = useState([]);
   const [sort, setSort] = useState(true);
   const [filter, setFilter] = useState("all");
   const [filtredTasks, setFiltredTasks] = useState([]);
+
+  useEffect(() => {
+    const startStoradge = localStorage.getItem("tasks") || "[]";
+    setTasks(JSON.parse(startStoradge));
+  }, []);
+
+  useEffect(() => {
+    if (tasks.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }, [tasks]);
 
   const tasksSort = () => {
     setFiltredTasks((prev) => {
@@ -76,6 +41,9 @@ const List = () => {
 
   const handleRemove = (id) => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
+    if (tasks.length === 1) {
+      localStorage.setItem("tasks", "[]");
+    }
   };
 
   const handleChange = (id) => {
@@ -139,5 +107,3 @@ const List = () => {
     </div>
   );
 };
-
-export { Title, Task, Checkbox, List };
