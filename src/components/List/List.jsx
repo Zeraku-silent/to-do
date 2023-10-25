@@ -83,6 +83,15 @@ export const List = () => {
     showFiltred();
   }, [tasks, filter]);
 
+  const Profile = () => {
+    return (
+      <img
+        src="https://i.imgur.com/MK3eW3Am.jpg"
+        alt="Kakaya to babka matematchka"
+      />
+    );
+  };
+
   return (
     <div>
       <Controller addTodo={addTodo} />
@@ -104,6 +113,14 @@ export const List = () => {
           />
         ))}
       </TasksList>
+
+      <section>
+        <h1> Amazing babulka-matematik</h1>
+        <Profile />
+        <Profile />
+        <Profile />
+        <Profile />
+      </section>
     </div>
   );
 };
