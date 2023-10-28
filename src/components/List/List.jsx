@@ -85,9 +85,31 @@ export const List = () => {
 
   const Profile = () => {
     return (
+      <>
+        <Avatar
+          size={100}
+          person={{ name: "Katsuko Saruhasji", imageId: "YfeOqp2" }}
+        />
+        <Avatar
+          person={{ name: "Lim Lanying", imageId: "1bx5QH6" }}
+          size={100}
+        />
+        <Avatar
+          person={{ name: "Alilu Lemma", imageId: "OKS67lh" }}
+          size={80}
+        />
+      </>
+    );
+  };
+
+  const Avatar = () => {
+    return (
       <img
-        src="https://i.imgur.com/MK3eW3Am.jpg"
-        alt="Kakaya to babka matematchka"
+        className="avatar"
+        src="https://i.imgur.com/1bX5QH6.jpg"
+        alt="Lin Lanying"
+        width={100}
+        height={100}
       />
     );
   };
@@ -102,7 +124,7 @@ export const List = () => {
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
         </select>
-        <button onClick={changeSort}>sort</button>
+        <button onClick={changeSort}>↓↑</button>
 
         {filtredTasks.map((item) => (
           <Task
@@ -116,9 +138,6 @@ export const List = () => {
 
       <section>
         <h1> Amazing babulka-matematik</h1>
-        <Profile />
-        <Profile />
-        <Profile />
         <Profile />
       </section>
     </div>
