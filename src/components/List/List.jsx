@@ -83,37 +83,6 @@ export const List = () => {
     showFiltred();
   }, [tasks, filter]);
 
-  const Profile = () => {
-    return (
-      <>
-        <Avatar
-          size={100}
-          person={{ name: "Katsuko Saruhasji", imageId: "YfeOqp2" }}
-        />
-        <Avatar
-          person={{ name: "Lim Lanying", imageId: "1bx5QH6" }}
-          size={100}
-        />
-        <Avatar
-          person={{ name: "Alilu Lemma", imageId: "OKS67lh" }}
-          size={80}
-        />
-      </>
-    );
-  };
-
-  const Avatar = () => {
-    return (
-      <img
-        className="avatar"
-        src="https://i.imgur.com/1bX5QH6.jpg"
-        alt="Lin Lanying"
-        width={100}
-        height={100}
-      />
-    );
-  };
-
   return (
     <div>
       <Controller addTodo={addTodo} />
@@ -135,11 +104,6 @@ export const List = () => {
           />
         ))}
       </TasksList>
-
-      <section>
-        <h1> Amazing babulka-matematik</h1>
-        <Profile />
-      </section>
     </div>
   );
 };
