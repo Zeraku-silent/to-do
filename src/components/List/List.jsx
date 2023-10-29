@@ -54,6 +54,12 @@ export const List = () => {
     );
   };
 
+  const taskNameChange = (id, text) => {
+    setTasks((prev) =>
+      prev.map((task) => (task.id !== id ? task : { ...task, text }))
+    );
+  };
+
   const changeSort = () => {
     setSort((prev) => !prev);
   };
@@ -97,6 +103,7 @@ export const List = () => {
 
         {filtredTasks.map((item) => (
           <Task
+            editingTask={taskNameChange}
             task={item}
             key={item.id}
             handleRemove={handleRemove}

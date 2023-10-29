@@ -11,15 +11,6 @@ function App() {
     <div className="App">
       <Title />
       <List />
-      <Card>
-        <Avatar
-          size={100}
-          person={{
-            name: "Naruto Uzumaki",
-            imageId: "YfeOqp2",
-          }}
-        />
-      </Card>
     </div>
   );
 }
