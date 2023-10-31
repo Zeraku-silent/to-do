@@ -7,9 +7,11 @@ const Card = ({ children }) => {
 };
 
 const Item = ({ name, isPackced }) => {
-  return (
-    <li className="item">{isPackced ? <del>{name + "✔"} </del> : name} </li>
-  );
+  let itemContent = name;
+  if (isPackced) {
+    itemContent = <del>{name + "✔"}</del>;
+  }
+  return <li className="item">{itemContent}</li>;
 };
 
 function App() {
