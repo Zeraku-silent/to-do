@@ -33,8 +33,38 @@ export const Task = ({ task, handleToggle, handleRemove, editingTask }) => {
       )}
       <Checkbox task={task} handleToggle={handleToggle}></Checkbox>
       <span>{task.date}</span> <br></br>
-      <button onClick={deliteTask}>Удалить</button>
-      <button onClick={toggleEditing}>Редактировать</button>
+      <button
+        style={{
+          backgroundColor: "red",
+          border: "3px solid gray",
+          color: "white",
+          borderRadius: 8,
+          padding: 8,
+          margin: 5,
+          textDecoration: "none",
+          display: "inline - block",
+          fontSize: 11,
+        }}
+        onClick={deliteTask}
+      >
+        Удалить
+      </button>
+      <button
+        style={{
+          backgroundColor: "orange",
+          border: "3px solid gray",
+          color: "white",
+          borderRadius: 8,
+          padding: 8,
+          margin: 5,
+          textDecoration: "none",
+          display: "inline - block",
+          fontSize: 11,
+        }}
+        onClick={toggleEditing}
+      >
+        Редактировать
+      </button>
     </TaskText>
   );
 };

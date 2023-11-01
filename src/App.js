@@ -57,9 +57,15 @@ function App() {
   ];
   const chemists = people.filter((person) => person.profession === "chemist");
 
-  const listItems = chemists.map((person) => (
-    <li>
-      <img src={getImageUrl(person)} alt={person.name} />
+  const listItems = people.map((person) => (
+    <li key={nanoid()}>
+      <img
+        style={{
+          borderRadius: 50,
+        }}
+        src={getImageUrl(person)}
+        alt={person.name}
+      />
       <p>
         <b>{person.name}:</b>
         {" " + person.profession + " "}

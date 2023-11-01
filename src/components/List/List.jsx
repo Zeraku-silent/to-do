@@ -99,7 +99,22 @@ export const List = () => {
           <option value="unsuccess">Только невыполненные</option>
           <option value="success">Только выполненные</option>
         </select>
-        <button onClick={changeSort}>↓↑</button>
+        <button
+          style={{
+            backgroundColor: "green",
+            border: "1px solid gray",
+            color: "white",
+            borderRadius: 8,
+            padding: 6,
+            margin: 5,
+            textDecoration: "none",
+            display: "inline - block",
+            fontSize: 12,
+          }}
+          onClick={changeSort}
+        >
+          ↓↑
+        </button>
 
         {filtredTasks.map((item) => (
           <Task
