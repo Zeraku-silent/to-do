@@ -16,6 +16,15 @@ const Item = ({ name, isPackced }) => {
   return <li className="item">{itemContent}</li>;
 };
 
+const Cup = ({ guest }) => <h2>Tea cup for guest #{guest}</h2>;
+const TeaGathering = () => {
+  let cups = [];
+  for (let i = 1; i <= 12; i++) {
+    cups.push(<Cup key={i} guest={i} />);
+  }
+  return cups;
+};
+
 function App() {
   const people = [
     {
@@ -88,14 +97,25 @@ function App() {
 
   return (
     <div className="App">
-      <section>
+      <TeaGathering />
+      <section
+        style={{
+          paddingLeft: 20,
+          margin: 20,
+        }}
+      >
         <h1>Spiced Chai Recipe</h1>
         <h2>For two</h2>
         <Recipe drinkers={2} />
         <h2>For gathering</h2>
         <Recipe drinkers={4} />
       </section>
-      <section>
+      <section
+        style={{
+          paddingLeft: 20,
+          margin: 20,
+        }}
+      >
         <h1> Sally Ride's Packing List</h1>
         <ul>
           <Item isPackced={true} name="Space suit" />
