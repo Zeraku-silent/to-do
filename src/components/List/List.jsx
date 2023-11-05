@@ -9,6 +9,7 @@ export const List = () => {
   const [sort, setSort] = useState(true);
   const [filter, setFilter] = useState("all");
   const [filtredTasks, setFiltredTasks] = useState([]);
+  const [time, setTime] = useState([]);
 
   useEffect(() => {
     const startStoradge = localStorage.getItem("tasks") || "[]";
