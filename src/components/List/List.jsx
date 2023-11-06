@@ -124,7 +124,9 @@ export const List = () => {
             key={item.id}
             handleRemove={handleRemove}
             handleToggle={handleChange}
-          />
+          >
+            {item.checked ? <p>'Выполнено'</p> : <p>'Не выполнено'</p>}
+          </Task>
         ))}
       </TasksList>
     </div>
